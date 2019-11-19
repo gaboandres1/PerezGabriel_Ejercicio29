@@ -3,21 +3,44 @@
 
 const float D = 1;
 const float s = 1;
-const int Nx = 30;
 const float Psi1 = 0;
 const float Psi2 = 0;
 const float Tmax = 1;
 float dT;
-int nT; 
+int nT;
+int Nx;
 float dX;
 
 void FTCS(float **, int, int);
 void mostrarMatriz(float **, int, int);
 
-int main(){
-	dT = 0.0001;
+int main(int argc, char **argv){
+	int input = atoi(argv[1]);
+    if(input == 0){
+    Nx = 30;
+	dT = 0.00226;
 	nT = Tmax / dT;
-	dX = 2.0/Nx;
+	dX = 2.0/Nx;    
+    }
+	else if( input == 1){
+        Nx = 31;
+        dT = 0.00226;
+        nT = Tmax / dT;
+        dX = 2.0/Nx;    
+    }
+	else if( input == 2){
+        Nx = 29;
+        dT = 0.00226;
+        nT = Tmax / dT;
+        dX = 2.0/Nx;    
+    }
+	else{
+        Nx = 29;
+        dT = 0.00226;
+        nT = (Tmax / dT) - 10;
+        dX = 2.0/Nx;    
+    }
+    
 	
     float **Psi = new float*[nT];
     for(int i=0;i<nT;i++){
